@@ -14,7 +14,8 @@
       <delete-buttons :config="this.$data" class="ml-4" />
     </div>
     <add-button :config="this.$data" class="mt-1" />
-    <odds :config="this.$data" class="mt-10" />
+    <odds :config="this.$data" class="mt-8" />
+    <copy-link-button :config="this.$data" class="mt-1" />
   </div>
 </template>
 
@@ -27,29 +28,23 @@ export default Vue.extend({
   name: 'Index',
   mounted() {
     const hash = this.$route.hash.toString()
+    if (hash.length === 0) {
+      this.loadSampleData()
+      this.$toast.info('Sample data loaded')
+      return
+    }
+
     try {
       const config = <Config>JSON.parse(decode(hash.substring(1)))
       this.$data.decks = config.decks
       this.$data.scores = config.scores
       this.$data.quantities = config.quantities
       this.$data.winCategories = config.winCategories
+      this.$toast.success('Data loaded')
     } catch (e) {
       console.warn(`Failed to parse hash: ${hash}, fallback to default`, e)
-      this.$data.decks = ['Sellő', 'Vámpír', 'Tier', 'Szerzetes', 'Olwianar']
-      this.$data.scores = [
-        [null, 3, 3, 2, 1],
-        [1, null, 3, 2, 3],
-        [1, 1, null, 1, 1],
-        [2, 2, 3, null, 3],
-        [3, 1, 3, 1, null],
-      ]
-      this.$data.quantities = [1, 2, 2, 1, 1]
-      this.$data.winCategories = [
-        new WinCategory(1, 20, '🤯'),
-        new WinCategory(2, 50, '😐'),
-        new WinCategory(3, 80, '😎'),
-      ]
-      return
+      this.loadSampleData()
+      this.$toast.warning('Failed to load data, fallback to sample')
     }
   },
   data(): Config {
@@ -87,6 +82,22 @@ export default Vue.extend({
     },
   },
   methods: {
+    loadSampleData() {
+      this.$data.decks = ['Sellő', 'Vámpír', 'Tier', 'Szerzetes', 'Olwianar']
+      this.$data.scores = [
+        [null, 3, 3, 2, 1],
+        [1, null, 3, 2, 3],
+        [1, 1, null, 1, 1],
+        [2, 2, 3, null, 3],
+        [3, 1, 3, 1, null],
+      ]
+      this.$data.quantities = [1, 2, 2, 1, 1]
+      this.$data.winCategories = [
+        new WinCategory(1, 20, '🤯'),
+        new WinCategory(2, 50, '😐'),
+        new WinCategory(3, 80, '😎'),
+      ]
+    },
     updateHash() {
       const encodedConfig = encode(JSON.stringify(this.$data))
       window.location.hash = `#${encodedConfig}`
