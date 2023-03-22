@@ -6,7 +6,7 @@
       <div class="flex justify-center font-bold w-24 h-12">Chance (%)</div>
     </div>
     <div v-for="i in config.winCategories.length" class="flex">
-      <div class="flex justify-center w-24 h-12">
+      <div class="flex justify-center items-center w-24 h-12">
         {{ config.winCategories[i - 1].emoji }}
       </div>
       <input

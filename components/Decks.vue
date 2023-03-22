@@ -30,9 +30,13 @@
           v-model.number="config.scores[i - 2][j - 2]"
           @change="onScoreChange(i - 2, j - 2)"
         >
-          <option :value="1">🤯</option>
-          <option :value="2">😐</option>
-          <option :value="3">😎</option>
+          <option
+            v-for="winCategory in config.winCategories"
+            :key="i"
+            :value="winCategory.score"
+          >
+            {{ winCategory.emoji }}
+          </option>
         </select>
       </div>
     </div>
