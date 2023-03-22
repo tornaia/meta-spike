@@ -1,6 +1,6 @@
 <template>
   <div class="p-1">
-    <h2 class="text-xl font-bold">Emojis</h2>
+    <h2 class="text-xl font-bold">Odds</h2>
     <div class="flex w-full">
       <div class="flex justify-center font-bold w-24 h-12">Emoji</div>
       <div class="flex justify-center font-bold w-24 h-12">Chance (%)</div>
