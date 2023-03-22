@@ -32,7 +32,7 @@ import { Config } from '~/utils/Config'
 import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
-  name: 'Weights',
+  name: 'NumberOfPlayers',
   props: {
     config: { type: Object as PropType<Config>, required: true },
   },

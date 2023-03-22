@@ -7,13 +7,14 @@
     </h1>
     <h2 class="text-xl font-bold">Decks</h2>
     <div class="flex">
-      <matrix :config="this.$data" />
-      <weights :config="this.$data" class="ml-8" />
-      <results :config="this.$data" class="ml-8" />
-      <delete-buttons :config="this.$data" class="ml-8" />
+      <decks :config="this.$data" />
+      <number-of-low-odds-matches :config="this.$data" class="ml-4" />
+      <number-of-players :config="this.$data" class="ml-4" />
+      <odds-weighted :config="this.$data" class="ml-4" />
+      <delete-buttons :config="this.$data" class="ml-4" />
     </div>
     <add-button :config="this.$data" class="mt-1" />
-    <win-categories :config="this.$data" class="mt-10" />
+    <odds :config="this.$data" class="mt-10" />
   </div>
 </template>
 
