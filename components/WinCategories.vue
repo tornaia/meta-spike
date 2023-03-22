@@ -10,24 +10,43 @@
         {{ config.winCategories[i - 1].emoji }}
       </div>
       <input
-        class="text-center bg-green-200 pl-3 w-24 h-12"
+        class="text-center pl-3 w-24 h-12"
+        :class="{ 'bg-green-200': i !== 2 }"
         type="number"
         min="0"
         max="100"
+        :disabled="i === 2"
         v-model.number="config.winCategories[i - 1].chance"
+        @change="onWinCategoryChange(i - 1)"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
 import { Config } from '~/utils/Config'
+import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
   name: 'WinCategories',
   props: {
     config: { type: Object as PropType<Config>, required: true },
+  },
+  methods: {
+    onWinCategoryChange(i: number): void {
+      switch (i) {
+        case 0:
+          this.config.winCategories[2].chance =
+            100 - this.config.winCategories[0].chance
+          break
+        case 1:
+          break
+        case 2:
+          this.config.winCategories[0].chance =
+            100 - this.config.winCategories[2].chance
+          break
+      }
+    },
   },
 })
 </script>
