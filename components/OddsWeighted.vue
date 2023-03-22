@@ -53,10 +53,6 @@ export default Vue.extend({
 
           let numberOfPlayers = this.config.quantities[i]
 
-          // nobody plays against himself
-          if (index === i && numberOfPlayers > 1) {
-            numberOfPlayers -= 1
-          }
           // console.log(this.config.decks[index] + ' chance to win against: ' + this.config.decks[i] + ' is ' + chanceOfWinningInPercentage);
           // console.log(this.config.decks[i] + ' is used by ' + numberOfPlayers + ' players');
           weightedPower += chanceOfWinningInPercentage * numberOfPlayers
