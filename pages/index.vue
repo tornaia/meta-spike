@@ -83,19 +83,19 @@ export default Vue.extend({
   },
   methods: {
     loadSampleData() {
-      this.$data.decks = ['Sellő', 'Vámpír', 'Tier', 'Szerzetes', 'Olwianar']
+      this.$data.decks = ['Szerzetes', 'Olwen', 'Bajvívó', 'Ghassa', 'Yupi']
       this.$data.scores = [
-        [null, 3, 3, 2, 1],
-        [1, null, 3, 2, 3],
-        [1, 1, null, 1, 1],
-        [2, 2, 3, null, 3],
-        [3, 1, 3, 1, null],
+        [null, 3, 1, 3, 2],
+        [1, null, 1, 3, 3],
+        [3, 3, null, 1, 2],
+        [1, 1, 3, null, 2],
+        [2, 1, 2, 2, null],
       ]
-      this.$data.quantities = [1, 2, 2, 1, 1]
+      this.$data.quantities = [2, 4, 7, 2, 4]
       this.$data.winCategories = [
-        new WinCategory(1, 20, '🤯'),
+        new WinCategory(1, 15, '🤯'),
         new WinCategory(2, 50, '😐'),
-        new WinCategory(3, 80, '😎'),
+        new WinCategory(3, 85, '😎'),
       ]
     },
     updateHash() {
